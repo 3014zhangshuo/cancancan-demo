@@ -1,20 +1,5 @@
 class ProjectsController < ApplicationController
     load_and_authorize_resource
-    def index
-        @projects = Project.all
-        # authorize! :index, @project
-        # prevents the user from accessing the projects page directly
-    end
-
-    def new
-        @project = Project.new
-        authorize! :new, @project
-  end
-
-    def edit
-        @project = Project.find(params[:id])
-        authorize! :edit, @project
-  end
 
     def update
         if @project.update_attributes(project_params)
