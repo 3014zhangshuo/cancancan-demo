@@ -1,7 +1,15 @@
-<div class="page-header"><h1>Projects</h1></div>
+<div>
+    <% if can? :create, Project %>
+    <%= link_to 'Add Project', new_project_path ,class: "btn btn-primary pull-right"%>
+    <% end %>
+</div>
+
+<div class="page-header">
+    <h1>Projects</h1>
+</div>
 
 <% @projects.each do |project| %>
-  <div class="well well-sm">
+<div class="well well-sm">
     <h2><%= project.title %></h2>
-  </div>
+</div>
 <% end %>
