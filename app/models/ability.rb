@@ -9,12 +9,18 @@ class Ability
     user ||= User.new
 
     if user.role?(:admin)
-     can :manage, :all
-    elsif user.role?(:moderator)
-     can [:create, :read, :update], Project
-    elsif user.role?(:user)
-     can :read, Project
-    end
+    can :manage, :all
+  elsif user.role?(:moderator)
+    can :create, Project
+    can :update, Project, ongoing: true
+    #same up
+    # can :update, Project do |project|
+    #   project.ongoing?
+    # end
+    can :read, Project
+  elsif user.role?(:user)
+    can :read, Project, ongoing: true
+  end
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
